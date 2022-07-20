@@ -1,7 +1,6 @@
-import { join } from "ramda";
-import "./algsLiveStats.scss";
 import dt from "datatables.net";
 import "datatables.net-dt/css/jquery.datatables.css";
+import "./algsLiveStats.scss";
 
 $("body").append(
   `<div id="maincontainer">
@@ -35,18 +34,25 @@ function getData(_, callback) {
   });
 }
 
-console.log("here");
 let datatable = $("#dataTable").DataTable({
   ajax: getData,
   paging: false,
   columns: [
-    { title: "P", data: "placement", width: "0%", className: "place" },
+    { title: "", data: "placement", width: "0%", className: "place" },
+    {
+      title: "",
+      className: "logo",
+      render: function (data, type, row) {
+        return `<img src=${row?.logo} />`;
+      },
+      width: "0%",
+      sortable: false,
+    },
     {
       title: "Name",
+      className: "name",
       render: function (data, type, row) {
-        return `<span><img src=${row?.logo} /> ${
-          row?.displayName ?? row?.name
-        }</span>`;
+        return row?.displayName ?? row?.name;
       },
       width: "0%",
     },
@@ -60,21 +66,36 @@ let datatable = $("#dataTable").DataTable({
       className: "matchPoint",
     },
     { title: "Pts", data: "tournamentPoints" },
-    { title: "#", data: "tournamentPlace", className: "tournamentPlace" },
+    {
+      title: "",
+      data: "tournamentPlace",
+      className: "tournamentPlace",
+    },
+    {
+      title: "",
+      data: "tournamentPlace",
+      className: "placementMarker",
+      render: function (data, type, row) {
+        let brightMult = 1 / Number(data);
+        return `<span style="filter:brightness(${brightMult})" class="placementMarker" />`;
+      },
+      sortable: false,
+    },
   ],
   order: [
-    [4, "asc"],
+    [5, "asc"],
     [0, "asc"],
-    [5, "desc"],
-    [7, "asc"],
-    [2, "desc"],
+    [6, "desc"],
+    [8, "asc"],
     [3, "desc"],
+    [4, "desc"],
   ],
   bInfo: false,
   createdRow: function (row, data, dataIndex) {
     if (data?.status === "alive") $(row).addClass("alive");
     if (parseInt(data?.tournamentPlace) <= 10) $(row).addClass("top10");
     if (data?.matchPoint) $(row).addClass("onMatchPoint");
+    window.DEV && $(row).addClass("alive");
   },
 });
 
