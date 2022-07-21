@@ -1,4 +1,4 @@
-import dt from "datatables.net";
+import "datatables.net";
 import "datatables.net-dt/css/jquery.datatables.css";
 import "./algsLiveStats.scss";
 
