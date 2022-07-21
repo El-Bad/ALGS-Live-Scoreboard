@@ -12,7 +12,7 @@ var pollCount = 0;
 var pollSpeed = 1000;
 var pollInterval = undefined;
 
-window.DEV = false;
+window.DEV = true;
 
 window.DEV && $("#maincontainer").prepend(`<h1>DEVELOPMENT MODE</h1`);
 
@@ -77,6 +77,7 @@ let datatable = $("#dataTable").DataTable({
       className: "placementMarker",
       render: function (data, type, row) {
         let brightMult = 1 / Number(data);
+        //if (Number(data) > 10) brightMult = 1 - brightMult;
         return `<span style="filter:brightness(${brightMult})" class="placementMarker" />`;
       },
       sortable: false,

@@ -71,7 +71,7 @@ tr {
   }
 
   &.top10 td.tournamentPlace {
-    background: #555;
+    //background: #555;
   }
 
   $fighting-height-space: 8px;
@@ -134,10 +134,14 @@ td.placementMarker span {
   width: 10px;
   top: 0;
   position: absolute;
-  right: 0;
+  right: -5px;
   height: 40px;
   display: block;
   background: red;
+}
+
+tr.top10 .placementMarker span {
+  background: green;
 }
 
 .onMatchPoint .place {
