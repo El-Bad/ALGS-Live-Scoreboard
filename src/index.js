@@ -12,7 +12,7 @@ var pollCount = 0;
 var pollSpeed = 1000;
 var pollInterval = undefined;
 
-window.DEV = true;
+window.DEV = false;
 
 window.DEV && $("#maincontainer").prepend(`<h1>DEVELOPMENT MODE</h1`);
 
