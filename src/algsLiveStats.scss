@@ -31,6 +31,16 @@ th {
   font-size: 0.7rem;
 }
 
+tbody tr::after {
+  position: absolute;
+  content: "";
+  width: 450px;
+  height: 40px;
+  background: black;
+  left: 0;
+  z-index: -100;
+}
+
 $row-height: 40px;
 tr {
   white-space: nowrap;

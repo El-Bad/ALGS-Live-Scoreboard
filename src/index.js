@@ -4,15 +4,16 @@ import "./algsLiveStats.scss";
 
 $("body").append(
   `<div id="maincontainer">
+      <button id="resetsort">Reset Sorting</button>
       <table id="dataTable" />
     </div>`
 );
 
 var pollCount = 0;
-var pollSpeed = 1000;
+var pollSpeed = 5000;
 var pollInterval = undefined;
 
-window.DEV = true;
+window.DEV = false;
 
 window.DEV && $("#maincontainer").prepend(`<h1>DEVELOPMENT MODE</h1`);
 
@@ -34,9 +35,19 @@ function getData(_, callback) {
   });
 }
 
+const defaultOrder = [
+  [5, "asc"],
+  [0, "asc"],
+  [6, "desc"],
+  [8, "asc"],
+  [3, "desc"],
+  [4, "desc"],
+];
+
 let datatable = $("#dataTable").DataTable({
   ajax: getData,
   paging: false,
+  rowReorder: true,
   columns: [
     { title: "", data: "placement", width: "0%", className: "place" },
     {
@@ -90,14 +101,7 @@ let datatable = $("#dataTable").DataTable({
       sortable: false,
     },
   ],
-  order: [
-    [5, "asc"],
-    [0, "asc"],
-    [6, "desc"],
-    [8, "asc"],
-    [3, "desc"],
-    [4, "desc"],
-  ],
+  order: [...defaultOrder],
   bInfo: false,
   createdRow: function (row, data, dataIndex) {
     if (data?.status === "alive") $(row).addClass("alive");
@@ -105,6 +109,14 @@ let datatable = $("#dataTable").DataTable({
     if (data?.matchPoint) $(row).addClass("onMatchPoint");
     window.DEV && $(row).addClass("alive");
   },
+});
+
+$("#dataTable").on("row-reorder", function (e, diff, edit) {
+  console.log("reorder", e, diff);
+});
+
+$("#resetsort").on("click", function () {
+  datatable.order(defaultOrder).ajax.reload();
 });
 
 //sleep(1000).then(() => $("tr").eq(4).addClass("fighting"));
