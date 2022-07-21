@@ -38,23 +38,22 @@ tr {
   height: $row-height;
 
   &.even {
-    background: #222 !important;
+    background: rgba(34, 34, 34, 0.8) !important;
   }
 
   &.odd {
-    background: #333 !important;
+    background: rgba(51, 51, 51, 0.8) !important;
   }
 
   &:not(.alive) {
     opacity: 0.3;
+    .placementMarker {
+      opacity: 0.5;
+    }
   }
 
   &:nth-child(10) {
     padding-bottom: 1rem !important;
-  }
-
-  &.alive.onMatchPoint + tr:not(.onMatchPoint) {
-    border-top: 2px solid #005200;
   }
 
   &.alive + tr:not(.alive) {
@@ -68,10 +67,6 @@ tr {
   &.onMatchPoint {
     color: white;
     font-weight: bold;
-  }
-
-  &.top10 td.tournamentPlace {
-    //background: #555;
   }
 
   $fighting-height-space: 8px;
@@ -131,13 +126,13 @@ td.placementMarker {
 }
 
 td.placementMarker span {
-  width: 10px;
+  width: 200px;
   top: 0;
   position: absolute;
   right: -5px;
   height: 40px;
   display: block;
-  background: red;
+  z-index: -1;
 }
 
 tr.top10 .placementMarker span {

@@ -76,9 +76,16 @@ let datatable = $("#dataTable").DataTable({
       data: "tournamentPlace",
       className: "placementMarker",
       render: function (data, type, row) {
-        let brightMult = 1 / Number(data);
-        //if (Number(data) > 10) brightMult = 1 - brightMult;
-        return `<span style="filter:brightness(${brightMult})" class="placementMarker" />`;
+        let extraRange = 5;
+        let placement = Number(data);
+        let colorMult;
+        if (placement <= 10) colorMult = placement / (20 + extraRange);
+        else colorMult = (placement + extraRange) / (20 + extraRange);
+
+        let c = getColorBetween([255, 0, 0], [0, 255, 0], colorMult);
+        let rgb = `${c[0]}, ${c[1]}, ${c[2]}`;
+        let gradient = `linear-gradient(90deg, rgba(${rgb}, 0) 0%, rgba(${rgb}, 1) 100%);`;
+        return `<span style="background: ${gradient}" class="placementMarker" />`;
       },
       sortable: false,
     },
@@ -101,3 +108,12 @@ let datatable = $("#dataTable").DataTable({
 });
 
 //sleep(1000).then(() => $("tr").eq(4).addClass("fighting"));
+
+//c1: [r, g, b], mult is 0-1, 0=c1 1=c2
+function getColorBetween(c1, c2, mult) {
+  return [
+    c1[0] * mult + c2[0] * (1 - mult),
+    c1[1] * mult + c2[1] * (1 - mult),
+    c1[2] * mult + c2[2] * (1 - mult),
+  ];
+}
