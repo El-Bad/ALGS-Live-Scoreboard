@@ -153,5 +153,9 @@ td.placementMarker span {
   background: #005200;
 }
 
-.child {
+.player {
+  display: grid;
+  grid-template-columns: 10rem repeat(3, 25%);
+  text-align: left;
+  padding: 1rem;
 }
