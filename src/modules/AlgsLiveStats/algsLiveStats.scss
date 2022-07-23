@@ -87,13 +87,16 @@ $row-height: 40px;
     top: 0;
     position: absolute;
     padding: 0 $fighting-extra-width;
-    opacity: 0.5;
+    opacity: 0.7;
     margin-top: calc($fighting-height-space / 2);
     margin-left: -$fighting-extra-width;
     left: 0;
     height: $fighting-height;
     content: "";
-    background: red;
+    background: rgba(255, 69, 0, 0.3);
+    border-radius: 4px;
+    border: 2px solid orangered;
+    box-sizing: border-box;
   }
 }
 
@@ -103,6 +106,9 @@ td {
 
   &.name {
     text-align: left;
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &.logo {
