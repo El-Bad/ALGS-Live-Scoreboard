@@ -31,7 +31,7 @@ th {
   font-size: 0.7rem;
 }
 
-tbody tr::after {
+tbody .mainrow::after {
   position: absolute;
   content: "";
   width: 450px;
@@ -42,7 +42,7 @@ tbody tr::after {
 }
 
 $row-height: 40px;
-tr {
+.mainrow {
   white-space: nowrap;
   position: relative;
   height: $row-height;
@@ -66,7 +66,7 @@ tr {
     padding-bottom: 1rem !important;
   }
 
-  &.alive + tr:not(.alive) {
+  &.alive + .mainrow:not(.alive) {
     border-top: 6px solid #111;
   }
 
@@ -145,10 +145,13 @@ td.placementMarker span {
   z-index: -1;
 }
 
-tr.top10 .placementMarker span {
+.mainrow.top10 .placementMarker span {
   background: green;
 }
 
 .onMatchPoint .place {
   background: #005200;
+}
+
+.child {
 }
