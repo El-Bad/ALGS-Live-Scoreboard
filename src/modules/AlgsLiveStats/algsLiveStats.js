@@ -2,7 +2,7 @@ import { createElement } from "../../jsx-without-react";
 
 import "./algsLiveStats.scss";
 import { sleep } from "./utils";
-import { defaultOrder, defineDatatable } from "./algsTable";
+import { defaultOrder, defineDatatable, reloadTable } from "./algsTable";
 
 export const ALGSLiveStats = () => {
   $("body").append(
@@ -15,23 +15,47 @@ export const ALGSLiveStats = () => {
 
   let datatable = defineDatatable();
 
+  //reload table without resetting children
+  const reloadTable = (datatable) => {
+    childRows = datatable.rows($(".shown"));
+    datatable.ajax.reload();
+  };
+
   $("#resetsort").on("click", function () {
     datatable.order(defaultOrder).ajax.reload();
   });
 
   var pollCount = 0;
+  var childRows = null;
   var pollSpeed = 2000;
-  if (!DEVELOPMENT) setInterval(pollData, pollSpeed);
+  if (!DEVELOPMENT)
+    setInterval(() => {
+      pollCount++;
+      reloadTable(datatable);
+    }, pollSpeed);
 
-  function pollData() {
-    pollCount++;
-    datatable.ajax.reload();
-  }
+  datatable.on("draw", function () {
+    if (childRows) {
+      childRows.every(function (rowIdx, tableLoop, rowLoop) {
+        this.child.show();
+        $(this.node()).addClass("shown");
+      });
+
+      childRows = null;
+    }
+  });
 
   sleep(1000).then(() => $("tr").eq(4).addClass("fighting"));
 
   $("#dataTable").on("click", "tr", function () {
-    var row = datatable.row($(this).closest("tr"));
-    row.child.isShown() ? row.child.hide() : row.child.show();
+    var tr = $(this).closest("tr");
+    var row = datatable.row(tr);
+    if (row.child.isShown()) {
+      row.child.hide();
+      $(tr).removeClass("shown");
+    } else {
+      row.child.show();
+      $(tr).addClass("shown");
+    }
   });
 };
