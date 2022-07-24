@@ -7,7 +7,7 @@ import { defaultOrder, defineDatatable } from "./algsTable";
 export const ALGSLiveStats = () => {
   $("body").append(
     <div id="maincontainer">
-      {DEVELOPMENT && <h1>DEVELOPMENT MODE</h1>}
+      {DEVELOPMENT ? <h1>DEVELOPMENT MODE</h1> : ""}
       <button id="resetsort">Reset Sorting</button>
       <table id="dataTable" />
     </div>

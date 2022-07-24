@@ -53,7 +53,15 @@ const defineDatatable = () => {
     paging: false,
     rowReorder: true,
     columns: [
-      { title: "", data: "placement", width: "0%", className: "place" },
+      {
+        title: "",
+        data: "placement",
+        width: "0%",
+        className: "place",
+        render: function (data, type, row) {
+          return `<span></span>${data}<div></div>`;
+        },
+      },
       {
         title: "",
         className: "logo",
@@ -121,7 +129,7 @@ const defineDatatable = () => {
       if (data?.status === "alive") $(row).addClass("alive");
       if (parseInt(data?.tournamentPlace) <= 10) $(row).addClass("top10");
       if (data?.matchPoint) $(row).addClass("onMatchPoint");
-      DEVELOPMENT && $(row).addClass("alive");
+      DEVELOPMENT && Number(data.placement) <= 8 && $(row).addClass("alive");
     },
   });
   return datatable;

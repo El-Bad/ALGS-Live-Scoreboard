@@ -60,14 +60,13 @@ $row-height: 40px;
     .placementMarker {
       opacity: 0.5;
     }
+    &.onMatchPoint td.place div {
+      opacity: 0.4;
+    }
   }
 
   &:nth-child(10) {
     padding-bottom: 1rem !important;
-  }
-
-  &.alive + .mainrow:not(.alive) {
-    border-top: 6px solid #111;
   }
 
   &:not(.top10) td.tournamentPlace {
@@ -81,19 +80,17 @@ $row-height: 40px;
 
   $fighting-height-space: 8px;
   $fighting-height: calc(100% - $fighting-height-space);
-  $fighting-extra-width: 1rem;
+  $fighting-extra-width: 16px;
   &.fighting:after {
-    width: 100%;
+    width: calc(100% + $fighting-extra-width);
     top: 0;
     position: absolute;
-    padding: 0 $fighting-extra-width;
     opacity: 0.7;
     margin-top: calc($fighting-height-space / 2);
-    margin-left: -$fighting-extra-width;
-    left: 0;
+    left: -$fighting-extra-width + 2px;
     height: $fighting-height;
     content: "";
-    background: rgba(255, 69, 0, 0.3);
+    background: rgba(255, 69, 0, 0.9);
     border-radius: 4px;
     border: 2px solid orangered;
     box-sizing: border-box;
@@ -151,12 +148,30 @@ td.placementMarker span {
   z-index: -1;
 }
 
-.mainrow.top10 .placementMarker span {
-  background: green;
-}
-
 .onMatchPoint .place {
-  background: #005200;
+  & > span {
+    position: absolute;
+    height: 40px;
+    width: 4px;
+    background: gold;
+    left: 0;
+    top: 0;
+  }
+
+  & > div {
+    height: 40px;
+    width: 200px;
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 215, 0, 1) 0%,
+      rgba(255, 215, 0, 0.7) 50%,
+      rgba(255, 215, 0, 0) 100%
+    );
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
 }
 
 .player {
