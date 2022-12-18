@@ -132,6 +132,15 @@ const defineDatatable = () => {
       if (data?.status === "alive") $(row).addClass("alive");
       if (parseInt(data?.tournamentPlace) <= 10) $(row).addClass("top10");
       if (data?.matchPoint) $(row).addClass("onMatchPoint");
+      //if(data?.$(row).addClass("fighting"));
+      if (
+        data?.players.some(
+          (player) => player.isDoingDamage || player.isTakingDamage
+        )
+      )
+        $(row).addClass("fighting");
+
+      console.log(data);
       DEVELOPMENT && Number(data.placement) <= 8 && $(row).addClass("alive");
     },
   });
