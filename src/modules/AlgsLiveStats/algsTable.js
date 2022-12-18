@@ -4,11 +4,13 @@ import { getColorBetween } from "./utils";
 import "datatables.net";
 import "datatables.net-dt/css/jquery.dataTables.css";
 
-function getData(_, callback) {
-  const API_URL = `https://discover.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-live/payload/graphics_match`;
+function getData(_, callback, live = false) {
+  const LIVE_API_URL = `https://discover.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-live/payload/graphics_match`;
+  const API_URL = `https://discover.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-delay/payload/graphics_match`;
+
   $.ajax({
     method: "GET",
-    url: API_URL,
+    url: live ? LIVE_API_URL : API_URL,
   }).done((response) => {
     callback({ data: response.teams_iterable });
   });
