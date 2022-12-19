@@ -27,7 +27,7 @@ export const ALGSLiveStats = () => {
 
   var pollCount = 0;
   var childRows = null;
-  var pollSpeed = 2000;
+  var pollSpeed = 300;
   if (!DEVELOPMENT)
     setInterval(() => {
       pollCount++;
