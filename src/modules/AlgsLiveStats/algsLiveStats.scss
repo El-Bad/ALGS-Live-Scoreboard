@@ -102,6 +102,7 @@ td {
     max-width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: relative;
   }
 
   &.logo {
@@ -183,4 +184,26 @@ td.placementMarker span {
   border-radius: 4px;
   color: #888;
   position: absolute;
+}
+
+.playersStatus {
+  width: 90px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  position: absolute;
+  bottom: 5px;
+
+  .status-1-ALIVE {
+    height: 2px;
+    background: rgba(10, 200, 0);
+  }
+  .status-2-DOWN {
+    height: 2px;
+    background: red;
+  }
+  .status-3-DEAD {
+    height: 2px;
+    background: #666;
+  }
 }

@@ -79,7 +79,12 @@ const defineDatatable = () => {
         title: "Name",
         className: "name",
         render: function (data, type, row) {
-          return row?.displayName ?? row?.name;
+          return `<span>${row?.displayName ?? row?.name}</span>
+          <div class="playersStatus">
+          ${row?.players
+            .map((player) => `<div class="status-${player?.status}"></div>`)
+            .join("")}
+          </div>`;
         },
         width: "0%",
       },
