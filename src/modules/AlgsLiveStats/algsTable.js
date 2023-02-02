@@ -55,6 +55,7 @@ const defineDatatable = () => {
     ajax: getData,
     paging: false,
     rowReorder: true,
+    filter: false,
     columns: [
       {
         title: "",

@@ -65,10 +65,6 @@ $row-height: 40px;
     }
   }
 
-  &:nth-child(10) {
-    padding-bottom: 1rem !important;
-  }
-
   &:not(.top10) td.tournamentPlace {
     color: #ccc;
   }
@@ -179,4 +175,12 @@ td.placementMarker span {
   grid-template-columns: 10rem repeat(3, 25%);
   text-align: left;
   padding: 1rem;
+}
+
+#resetsort {
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid black;
+  border-radius: 4px;
+  color: #888;
+  position: absolute;
 }

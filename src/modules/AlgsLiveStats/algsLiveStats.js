@@ -8,8 +8,7 @@ export const ALGSLiveStats = () => {
   $("body").append(
     <div id="maincontainer">
       {DEVELOPMENT ? <h1>DEVELOPMENT MODE</h1> : ""}
-      <button id="resetsort">Reset Sorting</button>
-      <table id="dataTable" />
+      <table id="dataTable" /> <button id="resetsort">Reset Sorting</button>
     </div>
   );
 
@@ -44,8 +43,6 @@ export const ALGSLiveStats = () => {
       childRows = null;
     }
   });
-
-  sleep(1000).then(() => $("tr").eq(4).addClass("fighting"));
 
   $("#dataTable").on("click", "tr", function () {
     var tr = $(this).closest("tr");
