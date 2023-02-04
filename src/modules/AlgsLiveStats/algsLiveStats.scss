@@ -34,7 +34,7 @@ th {
 tbody .mainrow::after {
   position: absolute;
   content: "";
-  width: 450px;
+  width: 481px;
   height: 40px;
   background: black;
   left: 0;
@@ -63,10 +63,6 @@ $row-height: 40px;
     &.onMatchPoint td.place div {
       opacity: 0.4;
     }
-  }
-
-  &:not(.top10) td.tournamentPlace {
-    color: #ccc;
   }
 
   &.onMatchPoint {

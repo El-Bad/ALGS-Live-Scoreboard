@@ -56,6 +56,7 @@ const defineDatatable = () => {
     paging: false,
     rowReorder: true,
     filter: false,
+    columnDefs: [{ defaultContent: "" }],
     columns: [
       {
         title: "",
