@@ -34,7 +34,7 @@ th {
 tbody .mainrow::after {
   position: absolute;
   content: "";
-  width: 481px;
+  width: 435px;
   height: 40px;
   background: black;
   left: 0;
@@ -179,7 +179,19 @@ td.placementMarker span {
   border: 2px solid black;
   border-radius: 4px;
   color: #888;
-  position: absolute;
+}
+
+#liveDiv {
+  margin-left: 1rem;
+  color: #888;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+
+  label {
+    padding-top: 0.1rem;
+    padding-left: 0.2rem;
+  }
 }
 
 .playersStatus {

@@ -9,6 +9,10 @@ export const ALGSLiveStats = () => {
     <div id="maincontainer">
       {DEVELOPMENT ? <h1>DEVELOPMENT MODE</h1> : ""}
       <table id="dataTable" /> <button id="resetsort">Reset Sorting</button>
+      <div id="liveDiv">
+        <input type="checkbox" id="live" name="live" value="live" />
+        <label for="live">Live (no delay)</label>
+      </div>
     </div>
   );
 
@@ -27,7 +31,7 @@ export const ALGSLiveStats = () => {
   var pollCount = 0;
   var childRows = null;
   var pollSpeed = 300;
-  if (!DEVELOPMENT)
+  if (DEVELOPMENT)
     setInterval(() => {
       pollCount++;
       reloadTable(datatable);

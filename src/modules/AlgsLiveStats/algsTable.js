@@ -5,7 +5,8 @@ import "datatables.net";
 import "datatables.net-dt/css/jquery.dataTables.css";
 
 function getData(_, callback) {
-  const LIVE = true;
+  const LIVE = $("#live").is(":checked");
+  console.log("LIVE:", LIVE);
   const LIVE_API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-live/payload/graphics_match`;
   const API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-delay/payload/graphics_match`;
 
