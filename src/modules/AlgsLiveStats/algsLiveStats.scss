@@ -214,4 +214,30 @@ td.placementMarker span {
     height: 2px;
     background: #666;
   }
+
+  > div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &.isDealingDamage:before {
+      content: "";
+      background: orange;
+      position: absolute;
+      width: 25%;
+      height: 100%;
+      margin-right: 25%;
+      top: -100%;
+    }
+
+    &.isTakingDamage:after {
+      content: "";
+      background: red;
+      position: absolute;
+      width: 25%;
+      height: 100%;
+      margin-left: 25%;
+      top: -100%;
+    }
+  }
 }

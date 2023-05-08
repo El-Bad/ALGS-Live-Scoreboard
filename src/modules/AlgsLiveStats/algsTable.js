@@ -6,7 +6,6 @@ import "datatables.net-dt/css/jquery.dataTables.css";
 
 function getData(_, callback) {
   const LIVE = $("#live").is(":checked");
-  console.log("LIVE:", LIVE);
   const LIVE_API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-live/payload/graphics_match`;
   const API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-delay/payload/graphics_match`;
 
@@ -84,7 +83,13 @@ const defineDatatable = () => {
           return `<span>${row?.displayName ?? row?.name}</span>
           <div class="playersStatus">
           ${row?.players
-            .map((player) => `<div class="status-${player?.status}"></div>`)
+            .map((player) => {
+              const isTakingDamage = player?.isTakingDamage
+                ? "takingDamage"
+                : "";
+              const isDoingDamage = player?.isDoingDamage ? "doingDamage" : "";
+              return `<div class="status-${player?.status} ${isTakingDamage} ${isDoingDamage}"></div>`;
+            })
             .join("")}
           </div>`;
         },
@@ -146,8 +151,6 @@ const defineDatatable = () => {
         )
       )
         $(row).addClass("fighting");
-
-      DEVELOPMENT && Number(data.placement) <= 8 && $(row).addClass("alive");
     },
   });
   return datatable;
