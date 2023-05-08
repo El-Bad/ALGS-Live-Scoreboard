@@ -31,7 +31,7 @@ export const ALGSLiveStats = () => {
   var pollCount = 0;
   var childRows = null;
   var pollSpeed = 300;
-  if (DEVELOPMENT)
+  if (!DEVELOPMENT)
     setInterval(() => {
       pollCount++;
       reloadTable(datatable);
