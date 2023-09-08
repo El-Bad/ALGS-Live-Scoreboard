@@ -6,7 +6,8 @@ import "datatables.net-dt/css/jquery.dataTables.css";
 
 function getData(_, callback) {
   const LIVE = $("#live").is(":checked");
-  const LIVE_API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-live/payload/graphics_match`;
+  //const LIVE_API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-live/payload/graphics_match`;
+  const LIVE_API_URL = `https://algs-data.flowics.com/feeds/prod-live`;
   const API_URL = `https://algs-data.flowics.com/discover/public/datasources/company/1584/integration_sink/apex-prod-twitch-delay/payload/graphics_match`;
 
   $.ajax({
